@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface BlogService {
     Blog create(Blog blog);
-    Blog findBlog(int id);
+    Blog findById(int id);
     List<Blog> findAll();
+    void deleteById(int id);
+    void update(int id,Blog blog);
 }

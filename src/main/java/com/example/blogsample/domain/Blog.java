@@ -1,6 +1,7 @@
 package com.example.blogsample.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Blog {
@@ -8,6 +9,7 @@ public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotEmpty(message = "Title is not empty!")
     private String title;
     private String category;
     @Column(columnDefinition = "TEXT")

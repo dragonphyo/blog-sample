@@ -18,26 +18,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" th:href="@{/blogs}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" th:href="@{/blog}">Create Blog</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/authors}">Authors</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-link" th:href="@{/author}">Create Author</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -52,6 +43,16 @@
                 New blog created successfully.
             </p>
         </div>
+        <div th:if="${delete}">
+            <p role="alert" class="alert alert-success">
+                Blog is successfully deleted.
+            </p>
+        </div>
+        <div th:if="${update}">
+            <p role="alert" class="alert alert-success">
+                Blog is successfully updated.
+            </p>
+        </div>
         <table class="table">
             <thead>
             <tr>
@@ -59,6 +60,9 @@
                 <th>Category</th>
                 <th>Body</th>
                 <th>Author</th>
+                <th>Details</th>
+                <th>Delete</th>
+                <th>Update</th>
             </tr>
             </thead>
             <tbody>
@@ -67,14 +71,25 @@
                 <td th:text="${b.category}"></td>
                 <td th:text="${#strings.substring(b.body,0,10)}"></td>
                 <td th:text="${b.author.name}"></td>
+                <td><a href="#" th:href="@{'/blog/'+${b.id}}" class="btn btn-primary">Details</a></td>
+                <td><a href="#" th:href="@{'/blog/delete/'+${b.id}}" class="btn btn-primary">Delete</a></td>
+                <td><a href="#" th:href="@{'/blog/update/'+${b.id}}" class="btn btn-dark">Update</a></td>
             </tr>
             </tbody>
+
         </table>
     </div>
+    <a href="#" th:href="@{/blog}" class="btn btn-primary">New Blog</a>
     </form>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>
